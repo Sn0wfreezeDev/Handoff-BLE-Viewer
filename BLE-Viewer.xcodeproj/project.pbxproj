@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,15 @@
 		FA835524233A757100E4F46B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FA835523233A757100E4F46B /* Preview Assets.xcassets */; };
 		FA835527233A757100E4F46B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FA835525233A757100E4F46B /* Main.storyboard */; };
 		FA835533233A757100E4F46B /* BLE_ViewerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835532233A757100E4F46B /* BLE_ViewerTests.swift */; };
+		FA83553F233A75C700E4F46B /* KeychainAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83553E233A75C700E4F46B /* KeychainAccess.swift */; };
+		FA835541233B5F4900E4F46B /* BLEDecryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835540233B5F4900E4F46B /* BLEDecryptor.swift */; };
+		FA835544233B5F7400E4F46B /* BLEReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835543233B5F7400E4F46B /* BLEReceiver.swift */; };
+		FA835547233B62C500E4F46B /* Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835546233B62C500E4F46B /* Logging.swift */; };
+		FA835549233B690800E4F46B /* HexToDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835548233B690800E4F46B /* HexToDataExtensions.swift */; };
+		FA83554B233B6FAA00E4F46B /* HandoffBLE.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83554A233B6FAA00E4F46B /* HandoffBLE.swift */; };
+		FA83554F233B718600E4F46B /* DataIntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA83554E233B718600E4F46B /* DataIntExtensions.swift */; };
+		FA835552233B82C800E4F46B /* CryptoSwift in Frameworks */ = {isa = PBXBuildFile; productRef = FA835551233B82C800E4F46B /* CryptoSwift */; };
+		FA835554233B86D900E4F46B /* BLEScannerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA835553233B86D900E4F46B /* BLEScannerVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +46,14 @@
 		FA83552E233A757100E4F46B /* BLE-ViewerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "BLE-ViewerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA835532233A757100E4F46B /* BLE_ViewerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLE_ViewerTests.swift; sourceTree = "<group>"; };
 		FA835534233A757100E4F46B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FA83553E233A75C700E4F46B /* KeychainAccess.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainAccess.swift; sourceTree = "<group>"; };
+		FA835540233B5F4900E4F46B /* BLEDecryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEDecryptor.swift; sourceTree = "<group>"; };
+		FA835543233B5F7400E4F46B /* BLEReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEReceiver.swift; sourceTree = "<group>"; };
+		FA835546233B62C500E4F46B /* Logging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logging.swift; sourceTree = "<group>"; };
+		FA835548233B690800E4F46B /* HexToDataExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HexToDataExtensions.swift; sourceTree = "<group>"; };
+		FA83554A233B6FAA00E4F46B /* HandoffBLE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandoffBLE.swift; sourceTree = "<group>"; };
+		FA83554E233B718600E4F46B /* DataIntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataIntExtensions.swift; sourceTree = "<group>"; };
+		FA835553233B86D900E4F46B /* BLEScannerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEScannerVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA835552233B82C800E4F46B /* CryptoSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,10 +98,15 @@
 			children = (
 				FA83551C233A756F00E4F46B /* AppDelegate.swift */,
 				FA83551E233A756F00E4F46B /* ContentView.swift */,
+				FA835553233B86D900E4F46B /* BLEScannerVC.swift */,
 				FA835520233A757100E4F46B /* Assets.xcassets */,
 				FA835525233A757100E4F46B /* Main.storyboard */,
 				FA835528233A757100E4F46B /* Info.plist */,
 				FA835529233A757100E4F46B /* BLE_Viewer.entitlements */,
+				FA83554D233B717700E4F46B /* Extensions */,
+				FA835545233B62B700E4F46B /* Logging */,
+				FA835542233B5F6200E4F46B /* BLE */,
+				FA83553D233A757F00E4F46B /* Crypto */,
 				FA835522233A757100E4F46B /* Preview Content */,
 			);
 			path = "BLE-Viewer";
@@ -106,6 +129,41 @@
 			path = "BLE-ViewerTests";
 			sourceTree = "<group>";
 		};
+		FA83553D233A757F00E4F46B /* Crypto */ = {
+			isa = PBXGroup;
+			children = (
+				FA83553E233A75C700E4F46B /* KeychainAccess.swift */,
+				FA835540233B5F4900E4F46B /* BLEDecryptor.swift */,
+			);
+			path = Crypto;
+			sourceTree = "<group>";
+		};
+		FA835542233B5F6200E4F46B /* BLE */ = {
+			isa = PBXGroup;
+			children = (
+				FA835543233B5F7400E4F46B /* BLEReceiver.swift */,
+				FA83554A233B6FAA00E4F46B /* HandoffBLE.swift */,
+			);
+			path = BLE;
+			sourceTree = "<group>";
+		};
+		FA835545233B62B700E4F46B /* Logging */ = {
+			isa = PBXGroup;
+			children = (
+				FA835546233B62C500E4F46B /* Logging.swift */,
+			);
+			path = Logging;
+			sourceTree = "<group>";
+		};
+		FA83554D233B717700E4F46B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				FA835548233B690800E4F46B /* HexToDataExtensions.swift */,
+				FA83554E233B718600E4F46B /* DataIntExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -122,6 +180,9 @@
 			dependencies = (
 			);
 			name = "BLE-Viewer";
+			packageProductDependencies = (
+				FA835551233B82C800E4F46B /* CryptoSwift */,
+			);
 			productName = "BLE-Viewer";
 			productReference = FA835519233A756F00E4F46B /* BLE-Viewer.app */;
 			productType = "com.apple.product-type.application";
@@ -172,6 +233,9 @@
 				Base,
 			);
 			mainGroup = FA835510233A756F00E4F46B;
+			packageReferences = (
+				FA835550233B82C800E4F46B /* XCRemoteSwiftPackageReference "CryptoSwift" */,
+			);
 			productRefGroup = FA83551A233A756F00E4F46B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -207,8 +271,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA835544233B5F7400E4F46B /* BLEReceiver.swift in Sources */,
+				FA835554233B86D900E4F46B /* BLEScannerVC.swift in Sources */,
+				FA835547233B62C500E4F46B /* Logging.swift in Sources */,
+				FA835541233B5F4900E4F46B /* BLEDecryptor.swift in Sources */,
 				FA83551F233A756F00E4F46B /* ContentView.swift in Sources */,
+				FA83554B233B6FAA00E4F46B /* HandoffBLE.swift in Sources */,
+				FA83553F233A75C700E4F46B /* KeychainAccess.swift in Sources */,
+				FA83554F233B718600E4F46B /* DataIntExtensions.swift in Sources */,
 				FA83551D233A756F00E4F46B /* AppDelegate.swift in Sources */,
+				FA835549233B690800E4F46B /* HexToDataExtensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,6 +432,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BLE-Viewer/BLE_Viewer.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BLE-Viewer/Preview Content\"";
@@ -371,9 +444,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.heinrich.alexander.BLE-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -383,6 +457,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "BLE-Viewer/BLE_Viewer.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"BLE-Viewer/Preview Content\"";
@@ -394,9 +469,10 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.heinrich.alexander.BLE-Viewer";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -406,6 +482,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A5U65N39SD;
@@ -428,6 +505,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = A5U65N39SD;
@@ -476,6 +554,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FA835550233B82C800E4F46B /* XCRemoteSwiftPackageReference "CryptoSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzyzanowskim/CryptoSwift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FA835551233B82C800E4F46B /* CryptoSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FA835550233B82C800E4F46B /* XCRemoteSwiftPackageReference "CryptoSwift" */;
+			productName = CryptoSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FA835511233A756F00E4F46B /* Project object */;
 }
