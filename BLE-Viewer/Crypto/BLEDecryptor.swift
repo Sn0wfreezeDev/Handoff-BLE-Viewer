@@ -24,15 +24,15 @@ struct BLEDecryptor {
         for key in keys {
             do {
                 let decrypted = try decrypt(handoffBLE: handoffBLE, withKey: key)
-                Log.info(system: .crypto,
-                         message:
-                        """
-                        Successfully decrypted handoff message
-                        Key used: %@
-                        Decrypted message:
-                        %@
-                        """,
-                        key.keyIdentifier.uuidString, decrypted.hexadecimal )
+//                Log.info(system: .crypto,
+//                         message:
+//                        """
+//                        Successfully decrypted handoff message
+//                        Key used: %@
+//                        Decrypted message:
+//                        %@
+//                        """,
+//                        key.keyIdentifier.uuidString, decrypted.hexadecimal )
                 
                 return decrypted
                 
@@ -46,9 +46,10 @@ struct BLEDecryptor {
     }
     
     func decrypt(handoffBLE: HandoffBLE, withKey key: HandoffKey) throws -> Data {
-        let version: [UInt8] = [handoffBLE.statusByte]
+        // The status byte is included in the GCM algorithm as part of the authendicated data
+        let statusByte: [UInt8] = [handoffBLE.statusByte]
         
-        let gcm = GCM(iv: handoffBLE.counterIV, authenticationTag: handoffBLE.authTag, additionalAuthenticatedData: version, mode: .detached)
+        let gcm = GCM(iv: handoffBLE.counterIV, authenticationTag: handoffBLE.authTag, additionalAuthenticatedData: statusByte, mode: .detached)
         
         gcm.authenticationTag = handoffBLE.authTag
         

@@ -11,8 +11,16 @@ import OSLog
 @_exported import os.log
 
 struct Log {
-    static func log(log: OSLog, type: OSLogType, message: StaticString,_ args: CVarArg...) {
-        os_log(type, log: log, message, args)
+    static func log(log: OSLog, type: OSLogType, message: StaticString,_ a: [CVarArg]) {
+        switch a.count {
+        case 5: os_log(message, log: log, type: type, a[0], a[1], a[2], a[3], a[4])
+        case 4: os_log(message, log: log, type: type, a[0], a[1], a[2], a[3])
+        case 3: os_log(message, log: log, type: type, a[0], a[1], a[2])
+        case 2: os_log(message, log: log, type: type, a[0], a[1])
+        case 1: os_log(message, log: log, type: type, a[0])
+        case 0: os_log(message, log: log, type: type)
+        default: os_log(message, log: log, type: type, a)
+        }
     }
     
     static func info(system: LogSystem, message: StaticString,_ args: CVarArg...) {

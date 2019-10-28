@@ -10,6 +10,7 @@ import Foundation
 
 
 /// This struct parses BLE data with Handoff to a format which can than be processed further
+/// It is used for parsing raw advertisements which are encrypted
 struct HandoffBLE {
     let statusByte: UInt8
     let counter: UInt16
@@ -18,6 +19,8 @@ struct HandoffBLE {
     let encryptedData: Data
     
     init(handoffData: Data) throws {
+        guard handoffData.count >= 3 else {throw HandoffError.invalidFormat}
+        
         let isAppleData = handoffData[handoffData.startIndex] == 0x4c
         let isHandoffData = handoffData[handoffData.startIndex.advanced(by: 2)] == 0x0c
         

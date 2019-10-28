@@ -9,6 +9,7 @@
 import XCTest
 @testable import BLE_Viewer
 import CryptoSwift
+import CoreBluetooth
 
 class BLE_ViewerTests: XCTestCase {
     var bleExpect: XCTestExpectation?
@@ -84,6 +85,9 @@ class BLE_ViewerTests: XCTestCase {
             XCTAssertNotNil(decrypted)
             XCTAssertEqual(decrypted, "<0088085c342dc9ed408e>".hexadecimal!)
             
+            let u = NSUserActivity(activityType: "de.macoun.handoff")
+            u.isEligibleForHandoff = true 
+            
         }catch(let error) {
             XCTFail(error.localizedDescription)
         }
@@ -112,11 +116,92 @@ class BLE_ViewerTests: XCTestCase {
         
         
     }
+    
+    func testHandoffAdvertisementParsing() throws {
+        let decryptedAdv = "0088085c342dc9ed198a".hexadecimal!
+        let rawAdvertisement = "<4c000c0e 0057cd3b 3cbd48f2 9e6bf563 f0921006 5b1e1d49 e249>".hexadecimal!
+        let handoffBLE = try HandoffBLE(handoffData: rawAdvertisement)
+        let parsedAdv = HandoffAdvertisement(withRawAdvertisement: handoffBLE, decryptedAdvertisementData: decryptedAdv)
+        
+        XCTAssertEqual(parsedAdv.statusByte, 0x00)
+        XCTAssertEqual(Array(parsedAdv.handoffHash), Array("88085c342dc9ed".hexadecimal!))
+        XCTAssertEqual(parsedAdv.flags, [.url, .pasteboardAvailable  ,.pasteboardVersionBit(versionBit: 0x10)])
+        XCTAssertEqual(parsedAdv.handoffActivity, HandoffActivity.notesEditNote)
+    }
+    
+    func testBleRandomNumbers() {
+        var randomTable = Array<Bool>(repeating: false, count: 0xffff + 1)
+        for i in 0...0xffff {
+            let random = arc4random_uniform(0xffff)
+            XCTAssertFalse(randomTable[Int(random)], "Found doubled value")
+            if randomTable[Int(random)] == true {
+                print("Failed at \(random)")
+                break
+            }
+            randomTable[Int(random)] = true
+        }
+    }
+    
+    var xs: UInt16 = 1
+    func xorShift() -> UInt16  {
+        xs ^= xs << 7;
+        xs ^= xs >> 9;
+        xs ^= xs << 8;
+        return xs;
+    }
+    
+    func testXorShift() {
+        var randomTable = Array<Bool>(repeating: false, count: 0xffff + 1)
+        for i in 1...0xffff {
+            let random = xorShift()
+            if randomTable[Int(random)] == true {
+                print("Failed at \(i) with \(random)")
+                XCTFail("Found doubled value")
+                break
+            }
+            randomTable[Int(random)] = true
+        }
+    }
+    
+    
+    func xorShiftMul(x: UInt16, key: UInt16) -> UInt16 {
+        var y = x
+        y ^= y >> 7
+        y ^= y << 9
+        y ^= y << 8
+        
+        let z: UInt64 = UInt64(y) * UInt64(key)
+        
+        y = UInt16(z % 0x10000)
+        
+        return y
+    }
+    
+    func testXorShiftMul() {
+        var randomTable = Array<Bool>(repeating: false, count: 0xffff + 1)
+        var x: UInt16 = 1
+        let key: UInt16 = 0x2362
+        
+        for i in 1...0xffff {
+            let random = xorShiftMul(x: x, key: key)
+            if randomTable[Int(random)] == true {
+                print("Failed at \(i) with \(random)")
+                XCTFail("Found doubled value")
+                break
+            }
+            randomTable[Int(random)] = true
+            x = random
+        }
+    }
 
 
 }
 
 extension BLE_ViewerTests: BLEReceiverDelegate {
+    func didReceive(handoffData: Data, fromDevice device: CBPeripheral) {
+        self.bleExpect?.fulfill()
+    }
+    
     func didReceive(handoffData: Data) {
         self.bleExpect?.fulfill()
     }

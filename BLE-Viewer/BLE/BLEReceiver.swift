@@ -11,7 +11,7 @@ import CoreBluetooth
 import os
 
 protocol BLEReceiverDelegate {
-    func didReceive(handoffData: Data)
+    func didReceive(handoffData: Data, fromDevice device: CBPeripheral)
 }
 
 class BLEReceiver: NSObject {
@@ -35,7 +35,7 @@ class BLEReceiver: NSObject {
     }
     
     func isHandoff(data: Data) -> Bool {
-        
+        guard data.count >= 3 else {return false}
         let isAppleData = data[data.startIndex] == 0x4c
         let isHandoffData = data[data.startIndex.advanced(by: 2)] == 0x0c
         
@@ -60,7 +60,7 @@ extension BLEReceiver: CBCentralManagerDelegate {
         guard let manufacturerData = advertisementData[CBAdvertisementDataManufacturerDataKey] as? Data,
             self.isHandoff(data: manufacturerData) else { return }
         
-        self.delegate?.didReceive(handoffData: manufacturerData)
+        self.delegate?.didReceive(handoffData: manufacturerData, fromDevice: peripheral)
     }
     
 }
