@@ -4,6 +4,8 @@ This project is part of my Master Thesis @ SEEMOO (TU Darmstadt).
 With iOS 8 Apple has released a feature called *Handoff*. It allows a user to start an activity on one device and continue on another device. For example you could start writing an email on your iPhone and continue the writing at the same spot with the same content on your Mac. All you need to do is to press one little button. 
 Researching how this feature is implemented by Apple is my main goal of my Thesis. 
 
+![Screenshot](Resources/Screenshot.png)
+
 One big part *Handoff* is Bluetooth Low Energy. With every *Handoff* activity  (`NSUserActivity` for devs) the OS will automatically send out a BLE advertising packet. The BLE communication has been researched by Martin et. al. [1] in *Handoff All Your Privacy: A Review of Apple's Bluetooth Low Energy Continuity Protocol*. The paper does only cover the encrypted parts of the messages and does not actually decrypt any packets. 
 Luckily most *Handoff* messages are encrypted, but this tool enables you to view the content of a *Handoff* BLE advertising packet. 
 

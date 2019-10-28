@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "27"
             endingLineNumber = "27"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "decrypt(handoffBLE:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -39,22 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "83D1759B-559D-4D9E-B2CE-6A5E09D1EB26"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "BLE-Viewer/BLEScannerVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "unknown"
-            landmarkType = "0">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "842A7C6A-6AA5-468C-97F1-8B1349223658"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -64,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "20"
             endingLineNumber = "20"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "log(log:type:message:_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -80,8 +64,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "60"
             endingLineNumber = "60"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "addAdvertisement(_:fromDevice:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "72EF0979-5F4B-4612-9495-AA870B82968F - aac22c8d96d4416d"
@@ -128,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "166"
             endingLineNumber = "166"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "tableView(_:viewFor:row:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
             endingLineNumber = "85"
-            landmarkName = "unknown"
-            landmarkType = "0">
+            landmarkName = "didReceive(handoffData:fromDevice:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
