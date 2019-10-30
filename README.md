@@ -6,7 +6,7 @@ Researching how this feature is implemented by Apple is my main goal of my Thesi
 
 ![Screenshot](Resources/Screenshot.png)
 
-One big part *Handoff* is Bluetooth Low Energy. With every *Handoff* activity  (`NSUserActivity` for devs) the OS will automatically send out a BLE advertising packet. The BLE communication has been researched by Martin et. al. [1] in *Handoff All Your Privacy: A Review of Apple's Bluetooth Low Energy Continuity Protocol*. The paper does only cover the encrypted parts of the messages and does not actually decrypt any packets. 
+One big part *Handoff* is Bluetooth Low Energy. With every *Handoff* activity  (`NSUserActivity` for devs) the OS will automatically send out a BLE advertising packet. The BLE communication has been researched by Martin et. al. ([Paper]) in *Handoff All Your Privacy: A Review of Apple's Bluetooth Low Energy Continuity Protocol*. The paper does only cover the encrypted parts of the messages and does not actually decrypt any packets. 
 Luckily most *Handoff* messages are encrypted, but this tool enables you to view the content of a *Handoff* BLE advertising packet. 
 
 I may insert parts of my Thesis here later for further explanations. 
@@ -25,4 +25,4 @@ Checkout the code if you don't belive me.
 
 
 
-[1]: https://arxiv.org/abs/1904.10600 
+[Paper]: https://arxiv.org/abs/1904.10600 
